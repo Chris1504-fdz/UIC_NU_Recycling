@@ -25,7 +25,8 @@ Goal: predict mechanical + rheological responses from processing inputs.
 
 - Raw: `raw_data/data_06_29_26/`
 - Processed tables: `processed_data/tensile/tensile_summary.csv`, `processed_data/rheology/rheology_summary.csv`
-- Regenerate: `jupyter nbconvert --to notebook --execute --inplace data_processing.ipynb`
+- Proposed experiments: `doe/doe_lhs.csv` / `.xlsx` (optimized Latin-hypercube design)
+- Notebooks: `notebooks/` — regenerate with `jupyter nbconvert --to notebook --execute --inplace notebooks/data_processing.ipynb`
 
 ## Next steps (from 08-06 meeting)
 
