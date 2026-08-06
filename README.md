@@ -20,7 +20,7 @@ Design  property modeling of extruded recycled-polymer blends.
 | Viscosity / flow curve | Pa·s | `viscosity_Pa_s` (or `powerlaw_K`, `powerlaw_n`) |
 
 **Design of experiments**
-- Temperature: 180–240 °C (4 levels).
+- Temperature: 180–240 °C.
 - Composition: PAL 10–50 % 
 - Recycle levels: 0 / 1 / 5 / 10× (no intermediate cycles).
 - Polymers: PP+PAL, HDPE+PAL, TPU+PAL (maybe nylon).
