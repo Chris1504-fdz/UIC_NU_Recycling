@@ -279,3 +279,21 @@ def doe_scatter(design: pd.DataFrame, save: Path | None = None):
     ax.legend(title="polymer system"); ax.grid(alpha=0.3)
     fig.tight_layout()
     return _save(fig, save)
+
+
+def design_benchmark(bench: pd.DataFrame, save: Path | None = None):
+    """One bar panel per diagnostic comparing optimized LHS vs baselines (arrows show 'good')."""
+    panels = [("centered_discrepancy", "centered discrepancy  (↓ better)"),
+              ("maximin", "maximin distance  (↑ better)"),
+              ("max_abs_corr", "max |factor corr|  (↓ better)"),
+              ("fill_distance", "fill distance  (↓ better)")]
+    colors = ["C0", "C1", "C2"]
+    fig, axes = plt.subplots(1, 4, figsize=(15, 4))
+    for ax, (col, title) in zip(axes, panels):
+        ax.bar(range(len(bench)), bench[col], color=colors)
+        ax.set_xticks(range(len(bench)), bench.index, rotation=20, ha="right", fontsize=8)
+        ax.set_title(title, fontsize=10)
+        ax.grid(axis="y", alpha=0.3)
+    fig.suptitle("Design diagnostics: optimized LHS vs. baselines")
+    fig.tight_layout()
+    return _save(fig, save)
