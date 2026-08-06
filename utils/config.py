@@ -25,7 +25,7 @@ DOE = SimpleNamespace(
     pal_range=(10.0, 50.0),                       # % PAL, continuous
     temp_range=(180.0, 240.0),                    # extrusion temp, degC, continuous
     n_formulations=12,                            # base formulations to make; multiple of len(polymers)
-    recycles=[0, 1, 5, 10],                       # within-sample degradation series (0 = virgin)
+    recycles=[1, 5, 10],                          # within-sample degradation series (recycled loops)
     seed=42,
 )
 

@@ -267,16 +267,18 @@ def doe_scatter(design: pd.DataFrame, save: Path | None = None):
     (Recycle level is not shown — it is a within-sample series applied to every point.)
     """
     styles = {"PP+PAL": ("o", "C0"), "HDPE+PAL": ("s", "C1"), "TPU+PAL": ("^", "C2")}
-    fig, ax = plt.subplots(figsize=(9, 6))
+    fig, ax = plt.subplots(figsize=(6, 6))
     for poly, (mk, color) in styles.items():
         sub = design[design["polymer_system"] == poly]
         if sub.empty:
             continue
         ax.scatter(sub["PAL_pct"], sub["extrusion_temp_C"], marker=mk, s=90,
                    color=color, edgecolor="k", lw=0.4, label=poly)
-    ax.set_xlabel("PAL content (%)"); ax.set_ylabel("Extrusion temperature (°C)")
-    ax.set_title(f"DoE formulations — optimized LHS ({len(design)} formulations)")
+    ax.set_xlabel("PAL content (%)", size=20) 
+    ax.set_ylabel("Extrusion temperature (°C)", size=20)
+    ax.set_title(f"DoE formulations, optimized LHS ({len(design)})", size = 20)
     ax.legend(title="polymer system"); ax.grid(alpha=0.3)
+    ax.tick_params(axis="both", labelsize=20)
     fig.tight_layout()
     return _save(fig, save)
 

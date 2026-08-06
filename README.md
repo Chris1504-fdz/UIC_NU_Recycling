@@ -22,6 +22,6 @@ Design  property modeling of extruded recycled-polymer blends.
 **Design of experiments**
 - Temperature: 180–240 °C.
 - Composition: PAL 10–50 % 
-- Recycle levels: 0 / 1 / 5 / 10× (no intermediate cycles).
+- Recycle levels: 1 / 5 / 10× (virgin 0× baseline separate).
 - Polymers: PP+PAL, HDPE+PAL, TPU+PAL (maybe nylon).
 
