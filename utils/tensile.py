@@ -144,6 +144,32 @@ def uts_toughness_stats(summary: pd.DataFrame) -> dict:
     return {"n": len(d), "pearson_r": float(r), "pearson_p": float(p), "spearman_rho": float(rho)}
 
 
+def pareto_front(table: pd.DataFrame, objectives: list[str], label: str | None = None) -> pd.DataFrame:
+    """Non-dominated sorting of the rows of ``table`` on ``objectives`` (all maximised).
+
+    Adds ``pareto_rank`` (1 = on the Pareto front, 2 = on the front once rank 1 is removed, ...),
+    ``pareto_optimal`` and ``dominated_by`` (the ``label`` values, else index, of the rows that
+    dominate it). Rows with a missing objective stay unranked.
+    """
+    d = table.dropna(subset=objectives)
+    v = d[objectives].to_numpy(float)
+    # dom[i, j]: row j dominates row i (>= on every objective, > on at least one)
+    dom = (v[None, :, :] >= v[:, None, :]).all(-1) & (v[None, :, :] > v[:, None, :]).any(-1)
+    rank, left, r = np.zeros(len(d), dtype=int), np.ones(len(d), dtype=bool), 0
+    while left.any():
+        r += 1
+        front = left & ~dom[:, left].any(axis=1)
+        rank[front] = r
+        left &= ~front
+    names = d[label].tolist() if label else d.index.tolist()
+    out = table.copy()
+    out["pareto_rank"] = pd.Series(rank, index=d.index).reindex(out.index).astype("Int64")
+    out["pareto_optimal"] = out["pareto_rank"].eq(1).fillna(False).astype(bool)
+    out["dominated_by"] = pd.Series([", ".join(str(names[j]) for j in np.flatnonzero(row)) for row in dom],
+                                    index=d.index).reindex(out.index)
+    return out
+
+
 def design_space(summary: pd.DataFrame) -> pd.DataFrame:
     """Per (PAL%, temperature) cell means for the design-space views."""
     return (summary.groupby(["pal_pct", "extr_temp_C"], as_index=False)

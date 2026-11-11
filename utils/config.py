@@ -45,10 +45,13 @@ def paths(root: Path | None = None) -> SimpleNamespace:
     proc = root / "processed_data"
     return SimpleNamespace(
         root=root,
-        raw=root / "raw_data" / "data_06_29_26",
+        raw=root / "raw_data" / "data_06_29_26",          # 2026-06-29 preliminary delivery
+        raw_doe=root / "raw_data" / "09_03_26",           # 2026-09-03 DoE tensile delivery (Instron CSVs)
         proc=proc,
         tensile=proc / "tensile",
         tensile_curves=proc / "tensile" / "curves",
+        tensile_doe=proc / "tensile_doe",
+        tensile_doe_curves=proc / "tensile_doe" / "curves",
         rheology=proc / "rheology",
         rheology_curves=proc / "rheology" / "curves",
         figures=proc / "figures",
@@ -58,5 +61,5 @@ def paths(root: Path | None = None) -> SimpleNamespace:
 
 def ensure_dirs(p: SimpleNamespace) -> None:
     """Create the output directories if they don't exist."""
-    for d in (p.tensile_curves, p.rheology_curves, p.figures, p.doe):
+    for d in (p.tensile_curves, p.tensile_doe_curves, p.rheology_curves, p.figures, p.doe):
         d.mkdir(parents=True, exist_ok=True)

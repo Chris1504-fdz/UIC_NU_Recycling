@@ -1,0 +1,14 @@
+configuration,polymer_system,PAL_pct,extrusion_temp_C,recycle_cycle,tensile_replicates
+1,PP+PAL,21,210,2,5
+2,PP+PAL,39,190,2,5
+3,PP+PAL,12,195,3,5
+4,PP+PAL,47,235,3,5
+5,HDPE+PAL,13,215,2,5
+6,HDPE+PAL,44,185,2,5
+7,HDPE+PAL,28,205,3,5
+8,HDPE+PAL,34,230,3,5
+9,TPU+PAL,26,190,1,5
+10,TPU+PAL,30,210,1,5
+11,TPU+PAL,43,235,1,5
+12,TPU+PAL,17,225,2,5
+13,TPU+PAL,36,195,3,5

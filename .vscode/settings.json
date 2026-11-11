@@ -1,0 +1,9 @@
+{
+    // Soft-wrap long lines to the editor width in LaTeX files (like Overleaf); Alt+Z toggles it per editor.
+    "[latex]": {
+        "editor.wordWrap": "on"
+    },
+    // Build only on request (Ctrl+Alt+B). With auto-build, every save refreshes the PDF tab, and the refreshed
+    // tab grabs the keyboard focus mid-sentence. Set back to "onFileChange" (default) or "onSave" to re-enable.
+    "latex-workshop.latex.autoBuild.run": "never"
+}
